@@ -16,13 +16,14 @@ namespace SearchService.Data
                 .Key(x => x.Color, KeyType.Text)
                 .CreateAsync();
             var count = await DB.CountAsync<Item>();
+            Console.WriteLine(count.ToString());
             if(count == 0) {
                 Console.WriteLine("No data, will attempt to seed");
                 var itemData = await File.ReadAllTextAsync("Data/auction.json");
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                 var items = JsonSerializer.Deserialize<List<Item>>(itemData, options);
                 await DB.SaveAsync(items);
-
+                Console.WriteLine("Data seeded");
 
             };
 
