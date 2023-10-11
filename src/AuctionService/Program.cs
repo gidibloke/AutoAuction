@@ -22,6 +22,10 @@ builder.Services.AddMassTransit(x =>
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.ConfigureEndpoints(context);
+        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host => {
+            host.Username(builder.Configuration.GetValue("RabbitMeq:Username", "guest"));
+            host.Username(builder.Configuration.GetValue("RabbitMeq:Password", "guest"));
+        });
     });
 });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => {
