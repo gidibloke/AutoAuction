@@ -14,7 +14,8 @@ public class MappingProfiles : Profile
         CreateMap<CreateAuctionDto, Auction>().ForMember(x => x.Item, o => o.MapFrom(s => s));
         CreateMap<CreateAuctionDto, Item>();
         CreateMap<AuctionDto, AuctionCreated>();
-        CreateMap<UpdateAuctionDto, AuctionUpdated>().ReverseMap();
+        CreateMap<Auction, AuctionUpdated>().IncludeMembers(a => a.Item);
+        CreateMap<Item, AuctionUpdated>();
 
     }
 }

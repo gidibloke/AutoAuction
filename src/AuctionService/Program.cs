@@ -1,3 +1,4 @@
+using AuctionService;
 using AuctionService.Data;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,6 +36,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.TokenValidationParameters.NameClaimType = "username";
 
 });
+builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,3 +56,6 @@ catch(Exception ex)
     Console.WriteLine(ex);
 }
 app.Run();
+
+public partial class Program { }
+

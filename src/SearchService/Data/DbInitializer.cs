@@ -24,8 +24,7 @@ namespace SearchService.Data
                 var items = JsonSerializer.Deserialize<List<Item>>(itemData, options);
                 await DB.SaveAsync(items);
                 Console.WriteLine("Data seeded");
-
-            };
+            }
 
         }
     }

@@ -7,7 +7,6 @@ using SearchService.Models;
 namespace SearchService.Consumer;
 public class AuctionDeletedConsumer : IConsumer<AuctionDeleted>
 {
-    private readonly IMapper _mapper;
 
     public async Task Consume(ConsumeContext<AuctionDeleted> context)
     {
